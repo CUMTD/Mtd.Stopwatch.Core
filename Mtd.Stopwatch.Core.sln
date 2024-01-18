@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34408.163
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtd.Stopwatch.Core", "Mtd.Stopwatch.Core.csproj", "{E1E6AFA5-5512-47DB-8C28-C4DAB0C3A600}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{5642FD70-B99B-471D-9318-8132DD1C7582}"
+	ProjectSection(SolutionItems) = preProject
+		.github\dependabot.yml = .github\dependabot.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{C08D3364-4062-49C4-B086-D6A93CD29A16}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build-test.yml = .github\workflows\build-test.yml
+		.github\workflows\codeql.yml = .github\workflows\codeql.yml
+		.github\workflows\publish-release.yml = .github\workflows\publish-release.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{890BC1CE-6C4C-4584-A4D0-4450F85051AA}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		Directory.Packages.props = Directory.Packages.props
+		icon.png = icon.png
+		nuget.config = nuget.config
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E1E6AFA5-5512-47DB-8C28-C4DAB0C3A600}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1E6AFA5-5512-47DB-8C28-C4DAB0C3A600}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1E6AFA5-5512-47DB-8C28-C4DAB0C3A600}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1E6AFA5-5512-47DB-8C28-C4DAB0C3A600}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C08D3364-4062-49C4-B086-D6A93CD29A16} = {5642FD70-B99B-471D-9318-8132DD1C7582}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {36E9C6E4-1E6C-4FFE-97B1-0799F0163596}
+	EndGlobalSection
+EndGlobal
