@@ -23,7 +23,7 @@ jobs:
   build-pack:
     runs-on: ubuntu-latest
     permissions:
-      packages: read
+      packages: write
       contents: read
     env:
       MtdGithubUserName: CUMTD
@@ -41,28 +41,6 @@ jobs:
         run: dotnet build --no-restore --configuration Release -p:Version=$VERSION $PACKAGE_ID.sln  
       - name: Create the package
         run: dotnet pack $PACKAGE_ID.sln -p:Version=$VERSION -p:PackageVersion=$VERSION -p:PackageId="$PACKAGE_ID" -p:Copyright="$COPYRIGHT" -p:PackageRequireLicenseAcceptance=false -p:PackageLicenseExpression="$LICENSE" -p:PackageIcon="$ICON" -p:PackageReadmeFile="$README" -p:RepositoryUrl="$REPO" -p:RepositoryType=git -p:Description="$DESCRIPTION" -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --no-build --no-restore --configuration Release --output $OUTPUT
-      - name: Upload Package Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: nupkg
-          path: $OUTPUT/
-          if-no-files-found: error
-          retention-days: 1
-          compression-level: 0
-          overwrite: true
-
-  deploy:
-    needs: build-pack
-    runs-on: ubuntu-latest
-    permissions:
-      packages: write
-    steps:
-      - name: Download Package Artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: nupkg
-          path: $OUTPUT/
-          merge-multiple: true
       - name: Publish the package to GPR
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
