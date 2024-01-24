@@ -7,7 +7,7 @@ namespace Mtd.Stopwatch.Core.Repositories.Transit
 		where T_Collection : IEnumerable<Shape>
 	{
 		public Task<T_Collection> GetAllWithShapePointsAsync(CancellationToken cancellationToken);
-		public Task<Shape> GetByIdentityWithShapePointsAsync(CancellationToken cancellationToken);
-		public Task<Shape?> GetByIdentityWithShapePointsOrDefaultAsync(CancellationToken cancellationToken);
+		public Task<Shape> GetByIdentityWithShapePointsAsync(string shapeId, CancellationToken cancellationToken);
+		public Task<Shape?> GetByIdentityWithShapePointsOrDefaultAsync(string shapeId, CancellationToken cancellationToken);
 	}
 }
