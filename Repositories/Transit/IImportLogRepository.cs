@@ -8,6 +8,6 @@ namespace Mtd.Stopwatch.Core.Repositories.Transit
 	{
 		Task<T_Collection> GetLastNLogsAsync(int n, CancellationToken cancellationToken);
 
-		Task<ImportLog> GetMostRecentSuccessAsync();
+		Task<ImportLog> GetMostRecentSuccessAsync(CancellationToken cancellationToken);
 	}
 }

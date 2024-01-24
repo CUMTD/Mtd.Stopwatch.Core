@@ -1,5 +1,4 @@
 using Mtd.Core.Repositories;
-using Mtd.Stopwatch.Core.Entities.Schedule;
 using Mtd.Stopwatch.Core.Entities.Transit;
 
 namespace Mtd.Stopwatch.Core.Repositories.Transit
@@ -8,8 +7,6 @@ namespace Mtd.Stopwatch.Core.Repositories.Transit
 		where T : Stop
 		where T_Collection : IEnumerable<T>
 	{
-		Task<ILookup<PublicRouteGroup, PublicRoute>> GetRoutesServedByStopAsync(string stopId, CancellationToken cancellationToken);
-
-		Task<T_Collection> GetAllWithStopTimesAsync(CancellationToken cancellationToken);
+		Task<T_Collection> GetAllActiveAsync(CancellationToken cancellationToken);
 	}
 }
