@@ -8,6 +8,6 @@
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Abstractions" Version="8.0.1" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Analyzers" Version="8.0.1" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
-    <PackageVersion Include="Mtd.Core" Version="8.0.1" />
+    <PackageVersion Include="Mtd.Core" Version="8.1.0" />
   </ItemGroup>
 </Project>

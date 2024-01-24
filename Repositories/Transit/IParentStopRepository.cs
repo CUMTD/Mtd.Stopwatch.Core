@@ -3,17 +3,15 @@ using Mtd.Stopwatch.Core.Entities.Transit;
 
 namespace Mtd.Stopwatch.Core.Repositories.Transit
 {
-	public interface IParentStopRepository : IStopRepository<ParentStop>, IReadable<ParentStop>, IWriteable<ParentStop>,
-		IIdentifiable<string, ParentStop>, IDisposable
+	public interface IParentStopRepository<T_Collection> : IStopRepository<ParentStop, T_Collection>, IAsyncReadable<ParentStop, T_Collection>, IAsyncWriteable<ParentStop, T_Collection>, IAsyncIdentifiable<string, ParentStop>, IDisposable
+		where T_Collection : IEnumerable<ParentStop>
 	{
-		Task<ParentStop> GetByIdentityWithChildStopsAsync(string id);
+		Task<ParentStop> GetByIdentityWithChildStopsAsync(string id, CancellationToken cancellationToken);
 
-		Task<ParentStop> GetByIdentityOrDefaultWithChildStopsAsync(string id);
+		Task<ParentStop?> GetByIdentityOrDefaultWithChildStopsAsync(string id, CancellationToken cancellationToken);
 
-		Task<List<ParentStop>> GetWithoutIStopsAsync();
+		Task<T_Collection> GetWithoutIStopsAsync(CancellationToken cancellationToken);
 
-		IEnumerable<ParentStop> GetAllWithChildStops();
-
-		Task<List<ParentStop>> GetAllWithChildStopsAsync();
+		Task<T_Collection> GetAllWithChildStopsAsync(CancellationToken cancellationToken);
 	}
 }

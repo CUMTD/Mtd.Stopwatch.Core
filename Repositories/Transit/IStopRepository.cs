@@ -1,12 +1,15 @@
+using Mtd.Core.Repositories;
 using Mtd.Stopwatch.Core.Entities.Schedule;
 using Mtd.Stopwatch.Core.Entities.Transit;
 
 namespace Mtd.Stopwatch.Core.Repositories.Transit
 {
-	public interface IStopRepository<T> where T : Stop
+	public interface IStopRepository<T, T_Collection> : IAsyncReadable<T, T_Collection>, IAsyncWriteable<T, T_Collection>, IAsyncIdentifiable<string, T>, IDisposable
+		where T : Stop
+		where T_Collection : IEnumerable<T>
 	{
-		Task<ILookup<PublicRouteGroup, PublicRoute>> GetRoutesServedByStop(string stopId);
+		Task<ILookup<PublicRouteGroup, PublicRoute>> GetRoutesServedByStopAsync(string stopId, CancellationToken cancellationToken);
 
-		Task<List<T>> GetAllWithStopTimesAsync();
+		Task<T_Collection> GetAllWithStopTimesAsync(CancellationToken cancellationToken);
 	}
 }

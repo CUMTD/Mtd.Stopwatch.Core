@@ -3,9 +3,10 @@ using Mtd.Stopwatch.Core.Entities.Schedule;
 
 namespace Mtd.Stopwatch.Core.Repositories.Schedule
 {
-	public interface IRerouteRepository : IReadable<Reroute>, IWriteable<Reroute>, IIdentifiable<string, Reroute>, IDisposable
+	public interface IRerouteRepository<T_Collection> : IAsyncReadable<Reroute, T_Collection>, IAsyncWriteable<Reroute, T_Collection>, IAsyncIdentifiable<string, Reroute>, IDisposable
+		where T_Collection : IEnumerable<Reroute>
 	{
-		Task<IEnumerable<Reroute>> GetAllActiveAsync();
-		Task<Reroute[]> GetAllActiveWithRoutesAsync(CancellationToken cancellationToken);
+		Task<T_Collection> GetAllActiveAsync(CancellationToken cancellationToken);
+		Task<T_Collection> GetAllActiveWithRoutesAsync(CancellationToken cancellationToken);
 	}
 }
