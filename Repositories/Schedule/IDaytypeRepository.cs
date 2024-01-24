@@ -3,8 +3,9 @@ using Mtd.Stopwatch.Core.Entities.Schedule;
 
 namespace Mtd.Stopwatch.Core.Repositories.Schedule
 {
-	public interface IDaytypeRepository : IReadable<Daytype>, IWriteable<Daytype>, IIdentifiable<string, Daytype>, IDisposable
+	public interface IDaytypeRepository<T_Collection> : IAsyncReadable<Daytype, T_Collection>, IAsyncWriteable<Daytype, T_Collection>, IAsyncIdentifiable<string, Daytype>, IDisposable
+		where T_Collection : IEnumerable<Daytype>
 	{
-		Task<List<Daytype>> GetAllWithRoutesAsync();
+		Task<T_Collection> GetAllWithRoutesAsync(CancellationToken cancellationToken);
 	}
 }

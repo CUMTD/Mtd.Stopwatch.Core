@@ -3,10 +3,11 @@ using Mtd.Stopwatch.Core.Entities.Transit;
 
 namespace Mtd.Stopwatch.Core.Repositories.Transit
 {
-	public interface IStopTimeRepository : IReadable<StopTime>, IWriteable<StopTime>, IDisposable
+	public interface IStopTimeRepository<T_Collection> : IAsyncReadable<StopTime, T_Collection>, IAsyncWriteable<StopTime, T_Collection>, IDisposable
+		where T_Collection : IEnumerable<StopTime>
 	{
-		StopTime GetByIdentity(string tripId, short stopSequence);
+		Task<StopTime> GetByIdentityAsync(string tripId, short stopSequence, CancellationToken cancellationToken);
 
-		StopTime GetByIdentityOrDefault(string tripId, short stopSequence);
+		Task<StopTime?> GetByIdentityOrDefaultAsync(string tripId, short stopSequence, CancellationToken cancellationToken);
 	}
 }

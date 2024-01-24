@@ -3,8 +3,9 @@ using Mtd.Stopwatch.Core.Entities.Transit;
 
 namespace Mtd.Stopwatch.Core.Repositories.Transit
 {
-	public interface IRouteRepository : IReadable<Route>, IWriteable<Route>, IIdentifiable<string, Route>, IDisposable
+	public interface IRouteRepository<T_Collection> : IAsyncReadable<Route, T_Collection>, IAsyncWriteable<Route, T_Collection>, IAsyncIdentifiable<string, Route>, IDisposable
+		where T_Collection : IEnumerable<Route>
 	{
-		Task<List<Route>> GetAllWithDirectionAsync();
+		Task<List<Route>> GetAllWithDirectionAsync(CancellationToken cancellationToken);
 	}
 }
