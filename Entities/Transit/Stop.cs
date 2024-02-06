@@ -28,6 +28,7 @@ namespace Mtd.Stopwatch.Core.Entities.Transit
 		public required string Timezone { get; set; }
 		public bool Accessible { get; set; }
 		public bool Active { get; set; }
+		public string? PlatformCode { get; set; }
 		public DateTime ImportTime { get; set; }
 
 		protected Stop()
