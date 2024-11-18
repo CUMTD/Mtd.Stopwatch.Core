@@ -18,7 +18,7 @@ namespace Mtd.Stopwatch.Core.Entities.Transit
 
 		protected Agency()
 		{
-			Routes = new List<Route>();
+			Routes = [];
 		}
 
 		public Agency(string id, string name, string phone, string email, string url, DateTime importTime, string? fareUrl = null, bool active = true) : this()

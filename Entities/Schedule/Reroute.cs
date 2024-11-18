@@ -27,7 +27,7 @@ namespace Mtd.Stopwatch.Core.Entities.Schedule
 		protected Reroute()
 		{
 			Timestamp = DateTime.Now;
-			AffectedRoutes = new List<PublicRoute>();
+			AffectedRoutes = [];
 		}
 
 		public Reroute(string title, string brief, string body, DateTime startDate, string reason, string postedBy, string effect) : this()

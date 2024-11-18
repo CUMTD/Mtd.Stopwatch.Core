@@ -17,7 +17,7 @@ namespace Mtd.Stopwatch.Core.Entities.Schedule
 
 		protected PublicRouteGroup()
 		{
-			PublicRoutes = new List<PublicRoute>();
+			PublicRoutes = [];
 		}
 
 		public PublicRouteGroup(short sortNumber, string routeName, string hexColor, string hexTextColor, string directionId) : this()
