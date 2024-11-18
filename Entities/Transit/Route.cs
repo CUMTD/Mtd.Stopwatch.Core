@@ -43,7 +43,7 @@ namespace Mtd.Stopwatch.Core.Entities.Transit
 
 		protected Route()
 		{
-			Trips = new List<Trip>();
+			Trips = [];
 		}
 
 		public Route(string id, string agencyId, string number, string name, string url, string color, string textColor, DateTime importTime, RouteType type = RouteType.Bus, bool? isIStop = null, bool active = true) : this()

@@ -25,16 +25,16 @@ namespace Mtd.Stopwatch.Core.Entities.Schedule
 		}
 
 		public required bool Active { get; set; }
-		public required virtual Daytype Daytype { get; set; }
-		public required virtual PublicRouteGroup PublicRouteGroup { get; set; }
+		public virtual required Daytype Daytype { get; set; }
+		public virtual required PublicRouteGroup PublicRouteGroup { get; set; }
 		public virtual ICollection<Route> Routes { get; set; }
 		public virtual ICollection<Reroute> Reroutes { get; set; }
 
 		protected PublicRoute()
 		{
 			Active = true;
-			Routes = new List<Route>();
-			Reroutes = new List<Reroute>();
+			Routes = [];
+			Reroutes = [];
 		}
 
 		public PublicRoute(string routeNumber, string daytypeId, string publicRouteGroupId) : this()
@@ -54,7 +54,7 @@ namespace Mtd.Stopwatch.Core.Entities.Schedule
 			var tod = time.TimeOfDay;
 			var ft = FirstTrip.TimeOfDay;
 			var lt = LastTrip.TimeOfDay;
-			var daytypes = (Daytype?.DaysOfWeek ?? Enumerable.Empty<DayOfWeek>()).ToArray();
+			var daytypes = (Daytype?.DaysOfWeek ?? []).ToArray();
 			if (LastTripAfterMidnight)
 			{
 				var midnight = new DateTime(DateTime.Now.Year, DateTime.Now.Month,

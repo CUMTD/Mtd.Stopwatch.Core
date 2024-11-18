@@ -11,8 +11,8 @@ namespace Mtd.Stopwatch.Core.Entities.Transit
 
 		protected Shape()
 		{
-			Trips = new List<Trip>();
-			Points = new List<ShapePoint>();
+			Trips = [];
+			Points = [];
 		}
 
 		public Shape(string id, DateTime importTime) : this()

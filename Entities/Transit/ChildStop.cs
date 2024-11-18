@@ -17,14 +17,14 @@ namespace Mtd.Stopwatch.Core.Entities.Transit
 		protected ChildStop()
 		{
 			ParentStopId = string.Empty;
-			StopTimes = new List<StopTime>();
+			StopTimes = [];
 		}
 
 		public ChildStop(string id, string name, string city, double latitude, double longitude, string parentStopId, DateTime importTime, string timezone = "America/Chicago", bool accessible = true, bool active = true)
 			: base(id, name, latitude, longitude, city, importTime, timezone, accessible, active)
 		{
 			ParentStopId = parentStopId;
-			StopTimes = new List<StopTime>();
+			StopTimes = [];
 		}
 
 		public string GetBoardingPointName() => Name.Contains('(') ? Name[Name.LastIndexOf('(')..].Trim('(', ')') : Name;

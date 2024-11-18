@@ -19,7 +19,7 @@ namespace Mtd.Stopwatch.Core.Entities.Schedule
 
 		protected Daytype()
 		{
-			Routes = new List<PublicRoute>();
+			Routes = [];
 		}
 
 		public Daytype(string daypart, string timepart, int sortOrder) : this()

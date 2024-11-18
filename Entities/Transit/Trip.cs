@@ -28,8 +28,8 @@ namespace Mtd.Stopwatch.Core.Entities.Transit
 
 		protected Trip()
 		{
-			CalendarDates = new List<CalendarDate>();
-			StopTimes = new List<StopTime>();
+			CalendarDates = [];
+			StopTimes = [];
 		}
 
 		public Trip(string id, string serviceId, string routeId, string blockId, string shapeId, string headsign,

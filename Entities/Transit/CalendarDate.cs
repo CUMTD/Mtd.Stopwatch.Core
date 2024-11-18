@@ -13,7 +13,7 @@ namespace Mtd.Stopwatch.Core.Entities.Transit
 
 		protected CalendarDate()
 		{
-			Trips = new List<Trip>();
+			Trips = [];
 		}
 
 		public CalendarDate(string serviceId, DateTime date, bool hasService, DateTime importTime) : this()

@@ -16,13 +16,13 @@ namespace Mtd.Stopwatch.Core.Entities.Transit
 
 		protected ParentStop()
 		{
-			ChildStops = new List<ChildStop>();
+			ChildStops = [];
 		}
 
 		public ParentStop(string id, string name, string city, double latitude, double longitude, DateTime importTime, string timezone = "America/Chicago", bool accessible = true, bool active = true)
 			: base(id, name, latitude, longitude, city, importTime, timezone, accessible, active)
 		{
-			ChildStops = new List<ChildStop>();
+			ChildStops = [];
 		}
 	}
 }
