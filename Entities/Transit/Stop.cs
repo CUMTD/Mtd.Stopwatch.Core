@@ -26,7 +26,7 @@ namespace Mtd.Stopwatch.Core.Entities.Transit
 		public required double Longitude { get; set; }
 		public string? Url { get; set; }
 		public required string Timezone { get; set; }
-		public bool Accessible { get; set; }
+		public bool? Accessible { get; set; }
 		public bool Active { get; set; }
 		public string? PlatformCode { get; set; }
 		public DateTime ImportTime { get; set; }
@@ -34,6 +34,7 @@ namespace Mtd.Stopwatch.Core.Entities.Transit
 		protected Stop()
 		{
 			_name = string.Empty;
+			Accessible = null;
 		}
 
 		protected Stop(string id, string name, double latitude, double longitude, string city, DateTime importTime, string timezone = "America/Chicago", bool accessible = true, bool active = true) : this()
