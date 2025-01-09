@@ -1,5 +1,4 @@
 ﻿using Mtd.Core.Entities;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Mtd.Stopwatch.Core.Entities.Schedule
 {
