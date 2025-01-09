@@ -1,4 +1,5 @@
 using Mtd.Core.Entities;
+using System.Text.Json.Serialization;
 
 namespace Mtd.Stopwatch.Core.Entities.Schedule
 {
@@ -15,6 +16,8 @@ namespace Mtd.Stopwatch.Core.Entities.Schedule
 			.Select(dow => (DayOfWeek)int.Parse(dow));
 
 		public string FriendlyName => $"{Daypart} - {Timepart}";
+
+		[JsonIgnore]
 		public virtual ICollection<PublicRoute> Routes { get; set; }
 
 		protected Daytype()
