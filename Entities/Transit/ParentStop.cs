@@ -22,7 +22,7 @@ public class ParentStop : Stop
 	}
 
 	[SetsRequiredMembers]
-	public ParentStop(string id, string name, string city, double latitude, double longitude, DateTime importTime, string timezone = "America/Chicago", bool accessible = true, bool active = true)
+	public ParentStop(string id, string name, string? city, double latitude, double longitude, DateTime importTime, string timezone = "America/Chicago", bool accessible = true, bool active = true)
 		: base(id, name, latitude, longitude, city, importTime, timezone, accessible, active)
 	{
 		ChildStops = [];

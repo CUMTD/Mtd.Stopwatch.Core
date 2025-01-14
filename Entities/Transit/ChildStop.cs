@@ -23,7 +23,7 @@ public class ChildStop : Stop
 	}
 
 	[SetsRequiredMembers]
-	public ChildStop(string id, string name, string city, double latitude, double longitude, string parentStopId,
+	public ChildStop(string id, string name, string? city, double latitude, double longitude, string parentStopId,
 		DateTime importTime, string timezone = "America/Chicago", bool accessible = true, bool active = true)
 		: base(id, name, latitude, longitude, city, importTime, timezone, accessible, active)
 	{
