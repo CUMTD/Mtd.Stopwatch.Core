@@ -11,7 +11,7 @@ public class ShapePoint : Entity, IEquatable<ShapePoint>
 	public required short Sequence { get; set; }
 	public required decimal DistanceTraveled { get; set; }
 	public string? StopId { get; set; }
-	public virtual required Shape Shape { get; set; } = null!;
+	public virtual required Shape Shape { get; set; }
 
 	protected ShapePoint()
 	{
@@ -21,6 +21,7 @@ public class ShapePoint : Entity, IEquatable<ShapePoint>
 	public ShapePoint(string shapeId, double latitude, double longitude, short sequence, decimal distanceTraveled)
 	{
 		ShapeId = shapeId;
+		Shape = null!;
 		Sequence = sequence;
 		DistanceTraveled = distanceTraveled;
 		Latitude = latitude;

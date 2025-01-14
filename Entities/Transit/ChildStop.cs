@@ -12,7 +12,7 @@ public class ChildStop : Stop
 		set => base.City = value;
 	}
 
-	public virtual required ParentStop ParentStop { get; set; } = null!;
+	public virtual required ParentStop ParentStop { get; set; }
 
 	public virtual ICollection<StopTime> StopTimes { get; set; }
 
@@ -28,6 +28,7 @@ public class ChildStop : Stop
 		: base(id, name, latitude, longitude, city, importTime, timezone, accessible, active)
 	{
 		ParentStopId = parentStopId;
+		ParentStop = null!;
 		StopTimes = [];
 	}
 

@@ -37,7 +37,7 @@ public class Route : Entity, IIdentity<string>, IComparable<Route>, IImportable
 
 	public bool? IsIStop { get; set; }
 	public required DateTime ImportTime { get; set; }
-	public virtual required Agency Agency { get; set; } = null!;
+	public virtual required Agency Agency { get; set; }
 	public virtual ICollection<Trip> Trips { get; set; }
 	public virtual PublicRoute? PublicRoute { get; set; }
 	public string FriendlyName => $"{Number} {Name}";
@@ -46,7 +46,7 @@ public class Route : Entity, IIdentity<string>, IComparable<Route>, IImportable
 	{
 		Trips = [];
 	}
-  
+
 	[SetsRequiredMembers]
 	public Route(string id, string agencyId, string number, string name, string url, string color, string textColor, DateTime importTime, RouteType type = RouteType.Bus, bool? isIStop = null, bool active = true) : this()
 	{
@@ -61,6 +61,7 @@ public class Route : Entity, IIdentity<string>, IComparable<Route>, IImportable
 		IsIStop = isIStop;
 		Active = active;
 		ImportTime = importTime;
+		Agency = null!;
 	}
 
 	public int CompareTo(Route? other)
