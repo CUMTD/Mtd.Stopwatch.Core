@@ -1,42 +1,41 @@
 using Mtd.Core.Entities;
 
-namespace Mtd.Stopwatch.Core.Entities.Transit
+namespace Mtd.Stopwatch.Core.Entities.Transit;
+
+public class ImportLog : GuidEntity
 {
-	public class ImportLog : GuidEntity
+	public required DateTime Start { get; set; }
+	public DateTime? Finish { get; set; }
+
+	public long? Ticks { get; protected set; }
+
+	public string? FileName { get; set; }
+	public required string ImportedBy { get; set; }
+	public required string ImportedMachine { get; set; }
+	public TimeSpan ElapsedTime
 	{
-		public required DateTime Start { get; set; }
-		public DateTime? Finish { get; set; }
+		get => Ticks.HasValue ? TimeSpan.FromTicks(Ticks.Value) : DateTime.Now - Start;
+		set => Ticks = value.Ticks;
+	}
 
-		public long? Ticks { get; protected set; }
+	public required bool Success { get; set; }
 
-		public string? FileName { get; set; }
-		public required string ImportedBy { get; set; }
-		public required string ImportedMachine { get; set; }
-		public TimeSpan ElapsedTime
-		{
-			get => Ticks.HasValue ? TimeSpan.FromTicks(Ticks.Value) : DateTime.Now - Start;
-			set => Ticks = value.Ticks;
-		}
+	public bool LikelyInProgress => !Finish.HasValue && Start.AddMinutes(20) > DateTime.Now;
+	public bool LikelyFailed => !Success && !LikelyInProgress;
 
-		public required bool Success { get; set; }
+	protected ImportLog()
+	{
+		Id = Guid
+			.NewGuid()
+			.ToString();
+		Success = false;
+	}
 
-		public bool LikelyInProgress => !Finish.HasValue && Start.AddMinutes(20) > DateTime.Now;
-		public bool LikelyFailed => !Success && !LikelyInProgress;
-
-		protected ImportLog()
-		{
-			Id = Guid
-				.NewGuid()
-				.ToString();
-			Success = false;
-		}
-
-		public ImportLog(DateTime start, string fileName) : this()
-		{
-			Start = start;
-			FileName = fileName;
-			ImportedBy = Environment.UserName;
-			ImportedMachine = Environment.MachineName;
-		}
+	public ImportLog(DateTime start, string fileName) : this()
+	{
+		Start = start;
+		FileName = fileName;
+		ImportedBy = Environment.UserName;
+		ImportedMachine = Environment.MachineName;
 	}
 }

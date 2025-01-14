@@ -1,7 +1,6 @@
-﻿namespace Mtd.Stopwatch.Core.Entities.Transit
+﻿namespace Mtd.Stopwatch.Core.Entities.Transit;
+
+public interface IImportable
 {
-	public interface IImportable
-	{
-		DateTime ImportTime { get; set; }
-	}
+	DateTime ImportTime { get; set; }
 }
