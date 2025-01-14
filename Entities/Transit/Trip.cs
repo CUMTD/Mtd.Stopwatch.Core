@@ -1,4 +1,5 @@
 using Mtd.Core.Entities;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Mtd.Stopwatch.Core.Entities.Transit;
 
@@ -16,11 +17,11 @@ public class Trip : Entity, IIdentity<string>, IImportable
 	public required bool Bikes { get; set; }
 	public DateTime ImportTime { get; set; }
 
-	public required virtual Route Route { get; set; }
+	public virtual required Route Route { get; set; }
 	public virtual ICollection<CalendarDate> CalendarDates { get; set; }
 
 	public virtual ICollection<StopTime> StopTimes { get; set; }
-	public required virtual Shape Shape { get; set; }
+	public virtual required Shape Shape { get; set; }
 
 	public string FriendlyHeadsign => string.IsNullOrWhiteSpace(Headsign)
 				? string.Empty
@@ -32,6 +33,7 @@ public class Trip : Entity, IIdentity<string>, IImportable
 		StopTimes = [];
 	}
 
+	[SetsRequiredMembers]
 	public Trip(string id, string serviceId, string routeId, string blockId, string shapeId, string headsign,
 		string shortName, byte direction, DateTime importTime, bool accessible = true, bool bikes = true) : this()
 	{
@@ -46,5 +48,7 @@ public class Trip : Entity, IIdentity<string>, IImportable
 		Accessible = accessible;
 		Bikes = bikes;
 		ImportTime = importTime;
+		Route = null!;
+		Shape = null!;
 	}
 }

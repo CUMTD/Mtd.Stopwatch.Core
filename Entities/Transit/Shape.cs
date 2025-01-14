@@ -1,4 +1,5 @@
 ﻿using Mtd.Core.Entities;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Mtd.Stopwatch.Core.Entities.Transit;
 
@@ -15,6 +16,7 @@ public class Shape : Entity, IIdentity<string>, IImportable
 		Points = [];
 	}
 
+	[SetsRequiredMembers]
 	public Shape(string id, DateTime importTime) : this()
 	{
 		Id = id;

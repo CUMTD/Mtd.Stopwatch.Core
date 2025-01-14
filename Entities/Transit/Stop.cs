@@ -1,4 +1,5 @@
 using Mtd.Core.Entities;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Mtd.Stopwatch.Core.Entities.Transit;
 
@@ -37,6 +38,7 @@ public abstract class Stop : Entity, IIdentity<string>, IImportable
 		Accessible = null;
 	}
 
+	[SetsRequiredMembers]
 	protected Stop(string id, string name, double latitude, double longitude, string? city, DateTime importTime, string timezone = "America/Chicago", bool accessible = true, bool active = true) : this()
 	{
 		Id = id;

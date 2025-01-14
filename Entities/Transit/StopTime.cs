@@ -1,4 +1,5 @@
 using Mtd.Core.Entities;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Mtd.Stopwatch.Core.Entities.Transit;
 
@@ -17,13 +18,14 @@ public class StopTime : Entity, IImportable
 	public required bool Timepoint { get; set; }
 	public required DateTime ImportTime { get; set; }
 
-	public required virtual ChildStop Stop { get; set; }
-	public required virtual Trip Trip { get; set; }
+	public virtual required ChildStop Stop { get; set; }
+	public virtual required Trip Trip { get; set; }
 
 	protected StopTime()
 	{
 	}
 
+	[SetsRequiredMembers]
 	public StopTime(string tripId, short stopSequence, DateTime arrivalTime, bool arrivalPastMidnight,
 		DateTime departureTime, bool departurePastMidnight, string stopId, string stopHeadsign,
 		PickupDropoffType pickupType, PickupDropoffType dropoffType, bool timepoint, DateTime importTime) : this()
@@ -40,5 +42,7 @@ public class StopTime : Entity, IImportable
 		DropOffType = dropoffType;
 		Timepoint = timepoint;
 		ImportTime = importTime;
+		Stop = null!;
+		Trip = null!;
 	}
 }

@@ -13,7 +13,7 @@ public class PublicRouteGroup : GuidEntity
 	public required virtual Direction Direction { get; set; }
 	public virtual ICollection<PublicRoute> PublicRoutes { get; set; }
 
-	public IEnumerable<PublicRoute> ActivePublicRoutes => PublicRoutes?.Where(pr => pr.Active) ?? Enumerable.Empty<PublicRoute>();
+	public IEnumerable<PublicRoute> ActivePublicRoutes => PublicRoutes?.Where(pr => pr.Active) ?? [];
 
 	protected PublicRouteGroup()
 	{
