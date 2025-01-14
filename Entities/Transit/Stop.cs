@@ -37,7 +37,7 @@ public abstract class Stop : Entity, IIdentity<string>, IImportable
 		Accessible = null;
 	}
 
-	protected Stop(string id, string name, double latitude, double longitude, string city, DateTime importTime, string timezone = "America/Chicago", bool accessible = true, bool active = true) : this()
+	protected Stop(string id, string name, double latitude, double longitude, string? city, DateTime importTime, string timezone = "America/Chicago", bool accessible = true, bool active = true) : this()
 	{
 		Id = id;
 		Name = name;
