@@ -1,4 +1,5 @@
 ﻿using Mtd.Core.Entities;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Mtd.Stopwatch.Core.Entities.Transit;
 
@@ -16,6 +17,7 @@ public class CalendarDate : Entity, IImportable
 		Trips = [];
 	}
 
+	[SetsRequiredMembers]
 	public CalendarDate(string serviceId, DateTime date, bool hasService, DateTime importTime) : this()
 	{
 		ServiceId = serviceId;

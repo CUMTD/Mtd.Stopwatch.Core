@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace Mtd.Stopwatch.Core.Entities.Transit;
 
 public class ChildStop : Stop
@@ -10,7 +12,7 @@ public class ChildStop : Stop
 		set => base.City = value;
 	}
 
-	public required virtual ParentStop ParentStop { get; set; }
+	public virtual required ParentStop ParentStop { get; set; }
 
 	public virtual ICollection<StopTime> StopTimes { get; set; }
 
@@ -20,10 +22,13 @@ public class ChildStop : Stop
 		StopTimes = [];
 	}
 
-	public ChildStop(string id, string name, string city, double latitude, double longitude, string parentStopId, DateTime importTime, string timezone = "America/Chicago", bool accessible = true, bool active = true)
+	[SetsRequiredMembers]
+	public ChildStop(string id, string name, string? city, double latitude, double longitude, string parentStopId,
+		DateTime importTime, string timezone = "America/Chicago", bool accessible = true, bool active = true)
 		: base(id, name, latitude, longitude, city, importTime, timezone, accessible, active)
 	{
 		ParentStopId = parentStopId;
+		ParentStop = null!;
 		StopTimes = [];
 	}
 

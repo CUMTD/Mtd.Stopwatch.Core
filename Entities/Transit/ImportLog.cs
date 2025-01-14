@@ -1,4 +1,5 @@
 using Mtd.Core.Entities;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Mtd.Stopwatch.Core.Entities.Transit;
 
@@ -31,6 +32,7 @@ public class ImportLog : GuidEntity
 		Success = false;
 	}
 
+	[SetsRequiredMembers]
 	public ImportLog(DateTime start, string fileName) : this()
 	{
 		Start = start;

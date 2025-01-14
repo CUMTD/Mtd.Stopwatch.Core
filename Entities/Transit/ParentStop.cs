@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace Mtd.Stopwatch.Core.Entities.Transit;
 
 public class ParentStop : Stop
@@ -12,14 +14,15 @@ public class ParentStop : Stop
 
 	public virtual IEnumerable<ChildStop> FilteredChildren =>
 		ChildStops
-			?.Where(cs => cs.Active) ?? Enumerable.Empty<ChildStop>();
+			?.Where(cs => cs.Active) ?? [];
 
 	protected ParentStop()
 	{
 		ChildStops = [];
 	}
 
-	public ParentStop(string id, string name, string city, double latitude, double longitude, DateTime importTime, string timezone = "America/Chicago", bool accessible = true, bool active = true)
+	[SetsRequiredMembers]
+	public ParentStop(string id, string name, string? city, double latitude, double longitude, DateTime importTime, string timezone = "America/Chicago", bool accessible = true, bool active = true)
 		: base(id, name, latitude, longitude, city, importTime, timezone, accessible, active)
 	{
 		ChildStops = [];
