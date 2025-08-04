@@ -9,7 +9,7 @@ namespace Mtd.Stopwatch.Core.Repositories.Api
 		public Task<T_Collection> GetAllActiveWithApiKeys(CancellationToken cancellationToken);
 		public Task<Developer> GetDeveloperByApiKey(string apiKey, CancellationToken cancellationToken);
 		public Task<Developer> GetDeveloperByApiKey(Guid apiKey, CancellationToken cancellationToken);
-		public Task<Developer> GetDeveloperByApiKeyOrDefault(string apiKey, CancellationToken cancellationToken);
-		public Task<Developer> GetDeveloperByApiKeyOrDefault(Guid apiKey, CancellationToken cancellationToken);
+		public Task<Developer?> GetDeveloperByApiKeyOrDefault(string apiKey, CancellationToken cancellationToken);
+		public Task<Developer?> GetDeveloperByApiKeyOrDefault(Guid apiKey, CancellationToken cancellationToken);
 	}
 }
