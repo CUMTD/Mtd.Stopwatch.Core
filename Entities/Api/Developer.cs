@@ -6,7 +6,7 @@ namespace Mtd.Stopwatch.Core.Entities.Api
 	{
 		public string Name { get; protected set; }
 		public int TokensPerHour { get; protected set; }
-		public int CurrentTokens { get; protected set; }
+		public float CurrentTokens { get; protected set; }
 		public DateTimeOffset LastTokenCountUpdate { get; protected set; }
 		public bool IsActive { get; protected set; }
 
