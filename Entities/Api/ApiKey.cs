@@ -8,7 +8,7 @@ namespace Mtd.Stopwatch.Core.Entities.Api
 		public string DeveloperId { get; protected set; }
 		public string Name { get; protected set; }
 		public string? Notes { get; protected set; }
-		public bool IsActive { get; protected set; };
+		public bool IsActive { get; protected set; }
 		public virtual Developer? Developer { get; protected set; }
 
 		protected ApiKey()
