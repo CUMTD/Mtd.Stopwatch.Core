@@ -29,7 +29,7 @@ namespace Mtd.Stopwatch.Core.Entities.Api
 			CurrentTokens = tokensPerHour;
 		}
 
-		public void UpdateTokens(int currentTokens, DateTimeOffset lastTokenCountUpdate)
+		public void UpdateTokens(float currentTokens, DateTimeOffset lastTokenCountUpdate)
 		{
 			if (currentTokens < 0)
 			{
