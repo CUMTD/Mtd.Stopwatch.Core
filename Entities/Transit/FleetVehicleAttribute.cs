@@ -9,6 +9,7 @@ public class FleetVehicleAttribute : Entity, IIdentity<string>, IImportable
 	public required string Id { get; set; }
 	public required string Value { get; set; }
 
+	public virtual FleetVehicle FleetVehicle { get; set; } = default!;
 	public DateTime ImportTime { get; set; }
 
 	[SetsRequiredMembers]

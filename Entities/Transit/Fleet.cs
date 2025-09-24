@@ -17,7 +17,7 @@ public class Fleet : Entity, IIdentity<string>, IImportable
 	public required bool IsActive { get; set; }
 	public required bool IsPublic { get; set; }
 
-	public virtual ICollection<CalendarDate> Vehicles { get; set; }
+	public virtual ICollection<FleetVehicle> Vehicles { get; set; }
 	public DateTime ImportTime { get; set; }
 
 	protected Fleet()
