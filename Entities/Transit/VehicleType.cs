@@ -1,6 +1,6 @@
 ﻿namespace Mtd.Stopwatch.Core.Entities.Transit;
 
-public enum FleetVehicleType : byte
+public enum VehicleType : byte
 {
 	Bus = 0,
 	ADAVan = 1,
