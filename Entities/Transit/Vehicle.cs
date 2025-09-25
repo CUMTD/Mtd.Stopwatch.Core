@@ -6,6 +6,7 @@ namespace Mtd.Stopwatch.Core.Entities.Transit;
 public class Vehicle : Entity, IIdentity<string>, IImportable
 {
 	public required string Id { get; set; }
+	public required string VehicleNumber { get; set; }
 	public required string VehicleConfigurationId { get; set; }
 	public required bool IsActive { get; set; }
 	public required string VIN { get; set; }
@@ -22,9 +23,10 @@ public class Vehicle : Entity, IIdentity<string>, IImportable
 	}
 
 	[SetsRequiredMembers]
-	public Vehicle(string id, string vehicleConfigurationId, bool isActive, string vin, string licensePlateNumber, DateOnly dateInService, DateTime importTime) : this()
+	public Vehicle(string id, string vehicleNumber, string vehicleConfigurationId, bool isActive, string vin, string licensePlateNumber, DateOnly dateInService, DateTime importTime) : this()
 	{
 		Id = id;
+		VehicleNumber = vehicleNumber;
 		VehicleConfigurationId = vehicleConfigurationId;
 		IsActive = isActive;
 		VIN = vin;
