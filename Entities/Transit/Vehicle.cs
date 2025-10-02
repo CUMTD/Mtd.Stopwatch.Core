@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Mtd.Stopwatch.Core.Entities.Transit;
 
-public class Vehicle : Entity, IIdentity<string>, IImportable
+public class Vehicle : Entity, IIdentity<string>
 {
 	public required string Id { get; set; }
 	public required string VehicleNumber { get; set; }
@@ -15,15 +15,13 @@ public class Vehicle : Entity, IIdentity<string>, IImportable
 	public virtual VehicleConfiguration VehicleConfiguration { get; set; } = default!;
 	public virtual ICollection<VehicleAttribute> Attributes { get; set; }
 
-	public DateTime ImportTime { get; set; }
-
 	protected Vehicle()
 	{
 		Attributes = [];
 	}
 
 	[SetsRequiredMembers]
-	public Vehicle(string id, string vehicleNumber, string vehicleConfigurationId, bool isActive, string vin, string licensePlateNumber, DateOnly dateInService, DateTime importTime) : this()
+	public Vehicle(string id, string vehicleNumber, string vehicleConfigurationId, bool isActive, string vin, string licensePlateNumber, DateOnly dateInService) : this()
 	{
 		Id = id;
 		VehicleNumber = vehicleNumber;
@@ -32,6 +30,5 @@ public class Vehicle : Entity, IIdentity<string>, IImportable
 		VIN = vin;
 		LicensePlateNumber = licensePlateNumber;
 		DateInService = dateInService;
-		ImportTime = importTime;
 	}
 }
