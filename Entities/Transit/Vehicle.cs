@@ -6,12 +6,12 @@ namespace Mtd.Stopwatch.Core.Entities.Transit;
 public class Vehicle : Entity, IIdentity<string>
 {
 	public required string Id { get; set; }
-	public required string VehicleNumber { get; set; }
+	public string? VehicleNumber { get; set; }
 	public required string VehicleConfigurationId { get; set; }
 	public required bool IsActive { get; set; }
-	public required string VIN { get; set; }
-	public required string LicensePlateNumber { get; set; }
-	public required DateOnly DateInService { get; set; }
+	public string? VIN { get; set; }
+	public string? LicensePlateNumber { get; set; }
+	public DateOnly? DateInService { get; set; }
 	public virtual VehicleConfiguration VehicleConfiguration { get; set; } = default!;
 	public virtual ICollection<VehicleAttribute> Attributes { get; set; }
 
