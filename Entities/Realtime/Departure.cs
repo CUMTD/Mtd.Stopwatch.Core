@@ -36,9 +36,9 @@ public partial class Departure : IRealtimeData, IComparable<Departure>
 	}
 
 	public string? BlockId { get; set; }
-	public required DateTime RecordedTime { get; set; }
-	public required DateTime ScheduledDeparture { get; set; }
-	public required DateTime EstimatedDeparture { get; set; }
+	public required DateTimeOffset RecordedTime { get; set; }
+	public required DateTimeOffset ScheduledDeparture { get; set; }
+	public required DateTimeOffset EstimatedDeparture { get; set; }
 	public required string VehicleId { get; set; }
 	public string? OriginStopId { get; set; }
 	public string? DestinationStopId { get; set; }
@@ -46,8 +46,25 @@ public partial class Departure : IRealtimeData, IComparable<Departure>
 	public required decimal Longitude { get; set; }
 	public string? ShapeId { get; set; }
 	public string? TripPrefix { get; set; }
-	public string? TripId => $"{TripPrefix}__{BlockId?.Replace(" ", "_")}";
-	public int MinutesTillDeparture => (int)Math.Floor((EstimatedDeparture - DateTime.Now).TotalMinutes);
+	public string? TripId
+	{
+		get
+		{
+			// We expect trips to be in the format <TRIP_ID>__<BLOCK_ID>
+			// This checks to make sure it isn't already in that format
+			// this prevents us from doing <TRIP_ID>__<BLOCK_ID>__<BLOCK_ID>
+			// it will also just return the prefix if the block id is null or empty or if the trip id is null or empty.
+			// this prevents us  from returning things like "__" or "__<BLOCK_ID>"
+			if (string.IsNullOrEmpty(TripPrefix) || TripPrefix.Contains("__") || string.IsNullOrEmpty(BlockId))
+			{
+				return TripPrefix;
+			}
+
+			return $"{TripPrefix}__{BlockId?.Replace(" ", "_")}";
+		}
+	} 
+
+	public int MinutesTillDeparture => (int)Math.Floor((EstimatedDeparture - TimeProvider.System.GetLocalNow()).TotalMinutes);
 	public required bool IsRealTime { get; set; }
 	public bool IsHopper => CultureInfo.CurrentCulture.CompareInfo.IndexOf(RouteColor, "hopper", CompareOptions.IgnoreCase) >= 0; // invariant case compare
 	public string? Destination { get; set; }
@@ -61,7 +78,7 @@ public partial class Departure : IRealtimeData, IComparable<Departure>
 				var minutes = MinutesTillDeparture;
 				return minutes <= 0 ?
 					"DUE" :
-					$"{minutes} {(minutes == 1 ? "min" : "mins")}";
+					$"{minutes} min{(minutes == 1 ? string.Empty : "s")}";
 			}
 
 			return EstimatedDeparture.ToString("t");

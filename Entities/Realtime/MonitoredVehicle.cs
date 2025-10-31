@@ -23,7 +23,7 @@ public class MonitoredVehicle : IRealtimeData
 	public string? TripId { get; set; }
 	public string? ShapeId { get; set; }
 	public string? Headsign { get; set; }
-	public DateTime Updated { get; set; }
+	public DateTimeOffset Updated { get; set; }
 	public required string VehicleNumber { get; set; }
 	public string? DriverNumber { get; set; }
 	public string? DriverName { get; set; }
