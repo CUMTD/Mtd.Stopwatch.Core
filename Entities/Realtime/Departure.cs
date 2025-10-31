@@ -13,8 +13,8 @@ public partial class Departure : IRealtimeData, IComparable<Departure>
 	public string? Headsign { get; set; }
 	public string? RouteId { get; set; }
 
-	private string _direction;
-	public string Direction
+	private string? _direction;
+	public string? Direction
 	{
 		get => _direction;
 		set
@@ -37,8 +37,8 @@ public partial class Departure : IRealtimeData, IComparable<Departure>
 
 	public string? BlockId { get; set; }
 	public required DateTimeOffset RecordedTime { get; set; }
-	public required DateTimeOffset ScheduledDeparture { get; set; }
-	public required DateTimeOffset EstimatedDeparture { get; set; }
+	public required DateTimeOffset? ScheduledDeparture { get; set; }
+	public required DateTimeOffset? EstimatedDeparture { get; set; }
 	public required string VehicleId { get; set; }
 	public string? OriginStopId { get; set; }
 	public string? DestinationStopId { get; set; }
@@ -62,9 +62,22 @@ public partial class Departure : IRealtimeData, IComparable<Departure>
 
 			return $"{TripPrefix}__{BlockId?.Replace(" ", "_")}";
 		}
-	} 
+	}
 
-	public int MinutesTillDeparture => (int)Math.Floor((EstimatedDeparture - TimeProvider.System.GetLocalNow()).TotalMinutes);
+	public int MinutesTillDeparture
+	{
+		get
+		{
+			if (EstimatedDeparture == null)
+			{
+				return 0;
+			}
+
+			return (int)Math.Floor((EstimatedDeparture.Value - TimeProvider.System.GetLocalNow()).TotalMilliseconds);
+
+		}
+	}
+
 	public required bool IsRealTime { get; set; }
 	public bool IsHopper => CultureInfo.CurrentCulture.CompareInfo.IndexOf(RouteColor, "hopper", CompareOptions.IgnoreCase) >= 0; // invariant case compare
 	public string? Destination { get; set; }
@@ -81,15 +94,15 @@ public partial class Departure : IRealtimeData, IComparable<Departure>
 					$"{minutes} min{(minutes == 1 ? string.Empty : "s")}";
 			}
 
-			return EstimatedDeparture.ToString("t");
+			return EstimatedDeparture?.ToString("t") ?? "Unknown";
 		}
 	}
 
 	public bool IsIStop { get; set; }
 
-	private string _routeNumber;
+	private string? _routeNumber;
 
-	public string RouteNumber
+	public string? RouteNumber
 	{
 		get => _routeNumber;
 		set
